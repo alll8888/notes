@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>璁導知識筆記庫</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;700;900&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --bg: #0d0d0d;
+    --surface: #141414;
+    --border: #222;
+    --accent: #e8c547;
+    --accent2: #4ecdc4;
+    --text: #e8e8e0;
+    --muted: #555;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Serif TC', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* GRAIN OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* HEADER */
+  header {
+    position: relative;
+    z-index: 1;
+    padding: 4rem 2rem 3rem;
+    border-bottom: 1px solid var(--border);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .site-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .site-tag::before {
+    content: '';
+    width: 2rem;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .site-title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .site-title span {
+    color: var(--accent);
+    display: block;
+  }
+
+  .site-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-top: 1.5rem;
+  }
+
+  /* FILTER BAR */
+  .filter-bar {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 2.5rem auto 0;
+    padding: 0 2rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 1px;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(232,197,71,0.05);
+  }
+
+  /* MAIN GRID */
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+  }
+
+  /* EPISODE GROUP */
+  .episode-group {
+    margin-bottom: 4rem;
+  }
+
+  .episode-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .episode-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+  }
+
+  .episode-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    flex: 1;
+  }
+
+  .episode-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+  }
+
+  /* CARDS GRID */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s;
+  }
+  .card:hover {
+    border-color: rgba(232,197,71,0.3);
+    transform: translateY(-2px);
+  }
+  .card:hover::after {
+    transform: scaleX(1);
+  }
+
+  .card-type {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .card-type-a { color: var(--accent); }
+  .card-type-b { color: #ff9f43; }
+  .card-type-c { color: var(--accent2); }
+  .card-type-d { color: #a29bfe; }
+
+  .card-icon {
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-desc {
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .card-arrow {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+  .card:hover .card-arrow {
+    color: var(--accent);
+    transform: translateX(3px);
+  }
+
+  /* STATS BAR */
+  .stats {
+    display: flex;
+    gap: 2rem;
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .stat {
+    font-family: 'Space Mono', monospace;
+  }
+  .stat-num {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .stat-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* EMPTY STATE */
+  .coming-soon {
+    border: 1px dashed var(--border);
+    padding: 2rem;
+    text-align: center;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  footer span { color: var(--accent); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .episode-group {
+    animation: fadeUp 0.5s ease both;
+  }
+  .episode-group:nth-child(1) { animation-delay: 0.1s; }
+  .episode-group:nth-child(2) { animation-delay: 0.2s; }
+  .episode-group:nth-child(3) { animation-delay: 0.3s; }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2rem; }
+    main { padding: 0 1.5rem; margin-top: 2rem; }
+    .stats { padding: 1.5rem; gap: 1.5rem; flex-wrap: wrap; }
+    .cards { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-tag">璁導 × AI 知識筆記庫</div>
+  <h1 class="site-title">
+    知識
+    <span>筆記庫</span>
+  </h1>
+  <p class="site-sub">導演思維 × 人設包裝 × 敘事行銷 × 知識變現</p>
+</header>
+
+<div class="stats" style="margin-top:2rem;">
+  <div class="stat">
+    <span class="stat-num" id="count-episodes">2</span>
+    <span class="stat-label">影片主題</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num" id="count-notes">5</span>
+    <span class="stat-label">筆記檔案</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">4</span>
+    <span class="stat-label">輸出武器</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">∞</span>
+    <span class="stat-label">持續更新</span>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterCards('all', this)">全部</button>
+  <button class="filter-btn" onclick="filterCards('A', this)">📓 學習筆記</button>
+  <button class="filter-btn" onclick="filterCards('B', this)">🎯 投影片大綱</button>
+  <button class="filter-btn" onclick="filterCards('C', this)">✍️ Thread</button>
+  <button class="filter-btn" onclick="filterCards('D', this)">📊 Infographic</button>
+</div>
+
+<main>
+
+  <!-- EP 01 -->
+  <div class="episode-group" data-ep="01">
+    <div class="episode-header">
+      <span class="episode-num">EP.01</span>
+      <h2 class="episode-title">數學的認知革命 — 陶哲軒</h2>
+      <span class="episode-date">2026.04.09</span>
+    </div>
+    <div class="cards">
+      <a href="tao_math_notes.html" class="card" data-type="A">
+        <span class="card-icon">📓</span>
+        <div class="card-type card-type-a">A ／ 學習筆記</div>
+        <div class="card-name">數學的認知革命<br>完整學習筆記</div>
+        <div class="card-desc">核心論點、歷史框架、AI 邊界、璁導視角</div>
+        <span class="card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- EP 02 -->
+  <div class="episode-group" data-ep="02">
+    <div class="episode-header">
+      <span class="episode-num">EP.02</span>
+      <h2 class="episode-title">多元興趣者的黃金三年</h2>
+      <span class="episode-date">2026.04.09</span>
+    </div>
+    <div class="cards">
+      <a href="multipleuser_A_learning_notes.html" class="card" data-type="A">
+        <span class="card-icon">📓</span>
+        <div class="card-type card-type-a">A ／ 學習筆記</div>
+        <div class="card-name">多元興趣者<br>學習筆記</div>
+        <div class="card-desc">核心洞察、璁導視角、實務連結</div>
+        <span class="card-arrow">→</span>
+      </a>
+      <a href="multipleuser_B_slide_outline.html" class="card" data-type="B">
+        <span class="card-icon">🎯</span>
+        <div class="card-type card-type-b">B ／ 投影片大綱</div>
+        <div class="card-name">多元興趣者<br>演講大綱</div>
+        <div class="card-desc">12 張投影片、講者備注、行動呼籲</div>
+        <span class="card-arrow">→</span>
+      </a>
+      <a href="multipleuser_C_thread.html" class="card" data-type="C">
+        <span class="card-icon">✍️</span>
+        <div class="card-type card-type-c">C ／ Thread</div>
+        <div class="card-name">多元興趣者<br>社群 Thread</div>
+        <div class="card-desc">璁導風格、每則獨立可傳播</div>
+        <span class="card-arrow">→</span>
+      </a>
+      <a href="multipleuser_D_infographic.html" class="card" data-type="D">
+        <span class="card-icon">📊</span>
+        <div class="card-type card-type-d">D ／ Infographic</div>
+        <div class="card-name">多元興趣者<br>加值懶人包</div>
+        <div class="card-desc">3-5 格連環圖解、適合截圖分享</div>
+        <span class="card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- 未來篇章預留 -->
+  <div class="episode-group" data-ep="future">
+    <div class="episode-header">
+      <span class="episode-num">EP.03</span>
+      <h2 class="episode-title" style="color:var(--muted)">下一篇持續更新中⋯</h2>
+    </div>
+    <div class="coming-soon">
+      上傳新逐字稿 → Claude 自動產出 ABCD → 加入這裡
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2026 <span>璁導</span> × 導演思維的知識變現系統</p>
+  <p style="margin-top:0.5rem;">由 Claude AI 知識筆記工廠自動生成</p>
+</footer>
+
+<script>
+function filterCards(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.querySelectorAll('.card').forEach(card => {
+    if (type === 'all' || card.dataset.type === type) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>
