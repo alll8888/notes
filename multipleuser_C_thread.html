@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thread｜多重興趣者的護城河</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Serif+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080808;
+    --card: #111;
+    --card2: #161616;
+    --yellow: #f5c518;
+    --white: #efefef;
+    --gray: #666;
+    --gray2: #2a2a2a;
+    --accent: #ff6030;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 20px 80px;
+    font-family: 'Noto Serif TC', serif;
+  }
+
+  .page-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .thread-wrap {
+    width: 100%;
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* TWEET CARD */
+  .tweet {
+    background: var(--card);
+    border: 1px solid var(--gray2);
+    padding: 26px 28px;
+    position: relative;
+    transition: background 0.15s;
+    cursor: default;
+  }
+  .tweet:hover { background: var(--card2); }
+
+  /* connector line */
+  .tweet:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 38px;
+    width: 1px; height: 1px;
+    background: var(--gray2);
+  }
+  .tweet-connector {
+    width: 1px;
+    height: 20px;
+    background: var(--gray2);
+    margin-left: 38px;
+  }
+
+  /* header row */
+  .tweet-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--bg);
+    flex-shrink: 0;
+  }
+  .handle {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--gray);
+  }
+  .tweet-num {
+    margin-left: auto;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--gray2);
+    letter-spacing: 1px;
+  }
+
+  /* tweet body */
+  .tweet-body {
+    font-size: 15px;
+    color: var(--white);
+    line-height: 1.85;
+  }
+  .tweet-body strong {
+    color: var(--yellow);
+    font-weight: 700;
+  }
+  .tweet-body em {
+    color: #aaa;
+    font-style: normal;
+    font-size: 14px;
+  }
+
+  /* special: single-line tweet */
+  .tweet.big .tweet-body {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--white);
+  }
+  .tweet.big .tweet-body strong {
+    color: var(--yellow);
+  }
+
+  /* hook tweet */
+  .tweet.hook {
+    border-color: var(--yellow);
+    border-width: 1px;
+    background: rgba(245,197,24,0.05);
+  }
+  .tweet.hook .tweet-body {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.7;
+  }
+
+  /* stat callout */
+  .stat-line {
+    background: rgba(245,197,24,0.08);
+    border-left: 2px solid var(--yellow);
+    padding: 8px 14px;
+    margin-top: 12px;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--yellow);
+  }
+
+  /* footer tweet */
+  .tweet.outro {
+    border-style: dashed;
+    border-color: var(--gray2);
+    background: transparent;
+  }
+  .tweet.outro .tweet-body {
+    color: #999;
+    font-size: 14px;
+  }
+
+  /* footer */
+  .thread-footer {
+    max-width: 520px;
+    width: 100%;
+    margin-top: 32px;
+    border-top: 1px solid var(--gray2);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+  }
+  .thread-footer .brand {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--gray);
+    letter-spacing: 2px;
+  }
+  .thread-footer .copy-note {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--gray);
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+<p class="page-title">// Thread · 璁導風格 · 多重興趣者的護城河</p>
+
+<div class="thread-wrap">
+
+  <!-- TWEET 1: HOOK -->
+  <div class="tweet hook">
+    <div class="tweet-header">
+      <div class="avatar">璁</div>
+      <span class="handle">@mengtsungli</span>
+      <span class="tweet-num">1/8</span>
+    </div>
+    <div class="tweet-body">
+      你有太多興趣，每個人都說你「太分散」。<br><br>
+      <strong>但 Dan Koe 年收 420 萬美元——他的秘訣，不是聚焦一件事。</strong>
+    </div>
+  </div>
+
+  <div class="tweet-connector"></div>
+
+  <!-- TWEET 2 -->
+  <div class="tweet">
+    <div class="tweet-header">
+      <div class="avatar">璁</div>
+      <span class="handle">@mengtsungli</span>
+      <span class="tweet-num">2/8</span>
+    </div>
+    <div class="tweet-body">
+      達文西同時是畫家、解剖學家、工程師、建築師。<br><br>
+      那個時代的人也說他太分散嗎？<br><br>
+      <em>不，他們只是羨慕他能看見別人看不見的東西。</em>
+    </div>
+  </div>
+
+  <div class="tweet-connector"></div>
+
+  <!-- TWEET 3: BIG -->
+  <div class="tweet big">
+    <div class="tweet-header">
+      <div class="avatar">璁</div>
+      <span class="handle">@mengtsungli</span>
+      <span class="tweet-num">3/8</span>
+    </div>
+    <div class="tweet-body">
+      AI 能取代的是<strong>單一技能</strong>。<br>
+      無法取代的，是<strong>你的興趣組合</strong>所形成的獨特視角。
+    </div>
+  </div>
+
+  <div class="tweet-connector"></div>
+
+  <!-- TWEET 4 -->
+  <div class="tweet">
+    <div class="tweet-header">
+      <div class="avatar">璁</div>
+      <span class="handle">@mengtsungli</span>
+      <span class="tweet-num">4/8</span>
+    </div>
+    <div class="tweet-body">
+      心理學 × 設計 → 理解用戶的動機，不只是外觀<br>
+      銷售 × 哲學 → 直擊需求，而非停在利益表象<br>
+      健身 × 商業 → 連 MBA 都想不到的健康品牌<br><br>
+      <strong>這些人在市場上幾乎沒有競爭對手。</strong>
+      <div class="stat-line">個人品牌研究：利基型創作者互動率是通才的 2.3 倍——但最強的利基，來自「興趣的獨特交叉點」</div>
+    </div>
+  </div>
+
+  <div class="tweet-connector"></div>
+
+  <!-- TWEET 5 -->
+  <div class="tweet">
+    <div class="tweet-header">
+      <div class="avatar">璁</div>
+      <span class="handle">@mengtsungli</span>
+      <span class="tweet-num">5/8</span>
+    </div>
+    <div class="tweet-body">
+      很多人以為變現要先「選一個方向」。<br><br>
+      Koe 說：先把自己當客戶。<br>
+      你面對的問題，就是無數個過去的你的問題。<br><br>
+      <strong>你不需要研究陌生的受眾——你就是那個受眾的原型。</strong>
+    </div>
+  </div>
+
+  <div class="tweet-connector"></div>
+
+  <!-- TWEET 6 -->
+  <div class="tweet">
+    <div class="tweet-header">
+      <div class="avatar">璁</div>
+      <span class="handle">@mengtsungli</span>
+      <span class="tweet-num">6/8</span>
+    </div>
+    <div class="tweet-body">
+      廣告導演 + 大學講師 + Podcast 主持人。<br><br>
+      很多人說我「到底在做什麼」。<br><br>
+      我現在明白了：<strong>這三個加在一起，才是我能看見別人看不見東西的原因。</strong><br><br>
+      <em>每個興趣都是另一個觀察世界的透鏡。</em>
+    </div>
+  </div>
+
+  <div class="tweet-connector"></div>
+
+  <!-- TWEET 7 -->
+  <div class="tweet">
+    <div class="tweet-header">
+      <div class="avatar">璁</div>
+      <span class="handle">@mengtsungli</span>
+      <span class="tweet-num">7/8</span>
+    </div>
+    <div class="tweet-body">
+      你的品牌不是 Logo。<br><br>
+      是別人關注你三到六個月後，<br>腦中對你的<strong>世界觀</strong>形成的印象。<br><br>
+      <em>建立那個世界，讓他們走進來。</em>
+    </div>
+  </div>
+
+  <div class="tweet-connector"></div>
+
+  <!-- TWEET 8: OUTRO -->
+  <div class="tweet outro">
+    <div class="tweet-header">
+      <div class="avatar">璁</div>
+      <span class="handle">@mengtsungli</span>
+      <span class="tweet-num">8/8</span>
+    </div>
+    <div class="tweet-body">
+      你有幾個看似不相關的興趣？<br><br>
+      把它們列出來。<br>找找交叉點。<br><br>
+      那個交叉點，也許就是這個時代給你的缺口。
+    </div>
+  </div>
+
+</div>
+
+<div class="thread-footer">
+  <span class="brand">璁導 · 故事說得好 客戶追著跑</span>
+  <span class="copy-note">8 則 Thread · 可複製發布</span>
+</div>
+
+</body>
+</html>

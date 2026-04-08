@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投影片大綱｜多重興趣者的黃金三年</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Serif+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #090909;
+    --bg2: #131313;
+    --bg3: #1c1c1c;
+    --yellow: #f5c518;
+    --yellow-soft: rgba(245,197,24,0.15);
+    --white: #f0f0f0;
+    --gray: #777;
+    --gray2: #333;
+    --red: #e63946;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Noto Serif TC', serif;
+    padding-bottom: 80px;
+  }
+
+  /* HEADER */
+  .deck-header {
+    background: var(--bg2);
+    border-bottom: 3px solid var(--yellow);
+    padding: 52px 40px 40px;
+    text-align: center;
+    position: relative;
+  }
+  .deck-header .badge {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--bg);
+    background: var(--yellow);
+    padding: 5px 14px;
+    margin-bottom: 20px;
+  }
+  .deck-header h1 {
+    font-size: clamp(22px, 4vw, 38px);
+    font-weight: 900;
+    line-height: 1.3;
+    max-width: 700px;
+    margin: 0 auto 12px;
+  }
+  .deck-header h1 em {
+    color: var(--yellow);
+    font-style: normal;
+  }
+  .deck-header .subtitle {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 2px;
+  }
+  .deck-header .meta-row {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .meta-chip {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--yellow);
+    border: 1px solid rgba(245,197,24,0.3);
+    padding: 4px 12px;
+  }
+
+  /* CONTAINER */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* SLIDE CARD */
+  .slide-card {
+    background: var(--bg2);
+    border: 1px solid var(--gray2);
+    margin-top: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .slide-card:hover {
+    border-color: rgba(245,197,24,0.4);
+  }
+  .slide-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--yellow);
+  }
+
+  .slide-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+  }
+  .slide-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--bg);
+    background: var(--yellow);
+    padding: 8px 14px;
+    writing-mode: horizontal-tb;
+    align-self: flex-start;
+    flex-shrink: 0;
+    letter-spacing: 2px;
+  }
+  .slide-content {
+    padding: 20px 24px;
+    flex: 1;
+  }
+  .slide-type {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .slide-title {
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+  .slide-title .highlight {
+    color: var(--yellow);
+  }
+
+  /* POINTS */
+  .points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .points li {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    color: #c0c0c0;
+    line-height: 1.6;
+  }
+  .points li::before {
+    content: '→';
+    color: var(--yellow);
+    flex-shrink: 0;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    margin-top: 2px;
+  }
+
+  /* SPEAKER NOTE */
+  .speaker-note {
+    background: var(--bg3);
+    border-top: 1px dashed var(--gray2);
+    padding: 14px 24px;
+  }
+  .speaker-note .note-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .speaker-note p {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* VISUAL HINT */
+  .visual-hint {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--red);
+    background: rgba(230,57,70,0.1);
+    border: 1px solid rgba(230,57,70,0.3);
+    padding: 6px 12px;
+    display: inline-block;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+
+  /* DURATION BAR */
+  .duration-bar {
+    margin-top: 40px;
+    background: var(--bg2);
+    border: 1px solid var(--gray2);
+    padding: 20px 24px;
+  }
+  .duration-bar h4 {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--yellow);
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+  .timeline {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .t-chip {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    padding: 5px 10px;
+    border: 1px solid var(--gray2);
+    color: var(--gray);
+    white-space: nowrap;
+  }
+  .t-chip.active {
+    border-color: var(--yellow);
+    color: var(--yellow);
+    background: var(--yellow-soft);
+  }
+
+  /* CTA SLIDE */
+  .cta-slide {
+    background: linear-gradient(135deg, #1a1500 0%, #0d0d0d 100%);
+    border: 2px solid var(--yellow);
+    padding: 40px 32px;
+    margin-top: 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-slide::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: -40px;
+    width: 150px; height: 150px;
+    border: 30px solid var(--yellow);
+    border-radius: 50%;
+    opacity: 0.06;
+  }
+  .cta-slide .slide-num-cta {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--yellow);
+    letter-spacing: 4px;
+    margin-bottom: 16px;
+  }
+  .cta-slide h2 {
+    font-size: clamp(20px, 3vw, 30px);
+    font-weight: 900;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+  .cta-slide h2 span { color: var(--yellow); }
+  .cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .cta-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    padding: 12px 24px;
+    background: var(--yellow);
+    color: var(--bg);
+    border: none;
+    cursor: pointer;
+    letter-spacing: 1px;
+    font-weight: 700;
+  }
+  .cta-btn.outline {
+    background: transparent;
+    color: var(--yellow);
+    border: 1px solid var(--yellow);
+  }
+
+  .footer-note {
+    text-align: center;
+    margin-top: 40px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--gray);
+    letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="deck-header">
+  <span class="badge">SLIDE DECK OUTLINE</span>
+  <h1>多重興趣者的<em>黃金三年</em>——<br>如何把你的興趣組合，做成 AI 無法複製的護城河</h1>
+  <p class="subtitle">璁導演講稿 · 適合 20-30 分鐘對外演講</p>
+  <div class="meta-row">
+    <span class="meta-chip">11 張投影片</span>
+    <span class="meta-chip">20-30 分鐘</span>
+    <span class="meta-chip">師字輩 / 知識工作者 / 創作者</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SLIDE 01 -->
+  <div class="slide-card">
+    <div class="slide-top">
+      <div class="slide-num">01</div>
+      <div class="slide-content">
+        <p class="slide-type">OPENING HOOK · 開場鉤子</p>
+        <h2 class="slide-title">你有太多興趣——<span class="highlight">這不是你的弱點，這是你的武器</span></h2>
+        <ul class="points">
+          <li>舉手問：有多少人覺得自己「太分散、太廣、不夠專注」？</li>
+          <li>反轉：今天我要告訴你，這個困擾，正是 AI 時代最稀缺的資產</li>
+          <li>提問：「你最後一次因為多個興趣而感到驕傲，是什麼時候？」</li>
+        </ul>
+      </div>
+    </div>
+    <div class="speaker-note">
+      <p class="note-label">講者備注</p>
+      <p>用舉手互動製造共鳴感。停頓 3 秒，讓大家意識到「這說的是我」。不要立刻給答案，先讓問題懸掛在空氣裡。</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 02 -->
+  <div class="slide-card">
+    <div class="slide-top">
+      <div class="slide-num">02</div>
+      <div class="slide-content">
+        <p class="slide-type">CONTEXT · 時代診斷</p>
+        <h2 class="slide-title">工業化把人變成<span class="highlight">機器零件</span>——學校是工廠，不是學校</h2>
+        <ul class="points">
+          <li>亞當斯密的針廠：分工讓產量從 20 枚→48,000 枚，但代價是「變得愚蠢和無知」</li>
+          <li>學校設計初衷：培養「守時聽話的工廠工人」，不是為你設計的系統</li>
+          <li>AI 的到來：系統迭代速度遠超個人學習速度，只懂執行的人最先被取代</li>
+          <li>結論：你被教導的所有「正確路徑」，都是舊時代的產物</li>
+        </ul>
+      </div>
+    </div>
+    <div class="speaker-note">
+      <p class="note-label">講者備注</p>
+      <p>用針廠數字製造視覺衝擊（可放大字體顯示 20→48,000）。讓聽眾感受「我一直在一個不為我設計的系統裡掙扎」的釋然感。</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 03 -->
+  <div class="slide-card">
+    <div class="slide-top">
+      <div class="slide-num">03</div>
+      <div class="slide-content">
+        <p class="slide-type">THEORY · 理論基礎</p>
+        <h2 class="slide-title">第二次文藝復興：<span class="highlight">印刷機 = AI，達文西 = 你</span></h2>
+        <div class="visual-hint">🎨 建議視覺：印刷機 vs AI 的平行對比時間軸</div>
+        <ul class="points">
+          <li>第一次文藝復興：古騰堡印刷機 → 知識成本崩塌 → 達文西、米開朗基羅的全才出現</li>
+          <li>今天：互聯網 + AI = 現代印刷機，知識門檻再次被打破</li>
+          <li>達文西的真相：他不是在多個領域「分心」，而是用科學深化藝術、用藝術啟發工程</li>
+          <li>你的多重興趣，就是下一個全才的基礎素材</li>
+        </ul>
+      </div>
+    </div>
+    <div class="speaker-note">
+      <p class="note-label">講者備注</p>
+      <p>這張是情緒高點，讓聽眾感到「我們正在見證歷史」。可以引用達文西名言：「研究藝術的科學，研究科學的藝術。萬事萬物都有聯繫。」</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 04 -->
+  <div class="slide-card">
+    <div class="slide-top">
+      <div class="slide-num">04</div>
+      <div class="slide-content">
+        <p class="slide-type">FRAMEWORK · 核心框架</p>
+        <h2 class="slide-title">通才的三個引擎：<span class="highlight">自我教育 × 自我利益 × 自給自足</span></h2>
+        <div class="visual-hint">🎨 建議視覺：三角形互扣圖，各有簡短定義</div>
+        <ul class="points">
+          <li>自我教育：以興趣為導向，主動建構跨領域知識體系（效率遠超被動學習）</li>
+          <li>自我利益：追隨真實興趣 ≠ 自私，是找到能無私服務他人的驅動力</li>
+          <li>自給自足：拒絕把判斷力外包——不依賴公司薪資、他人評價、傳統規則定義自己</li>
+          <li>三者相互強化，共同催生「通才」的誕生</li>
+        </ul>
+      </div>
+    </div>
+    <div class="speaker-note">
+      <p class="note-label">講者備注</p>
+      <p>可請聽眾在心中給自己打分：「三個引擎，你現在哪個最弱？」製造自我診斷的時刻，增加後續行動的動力。</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 05 -->
+  <div class="slide-card">
+    <div class="slide-top">
+      <div class="slide-num">05</div>
+      <div class="slide-content">
+        <p class="slide-type">INSIGHT · 核心洞見</p>
+        <h2 class="slide-title">跨域連接力：<span class="highlight">1+1 不等於 2，等於 11</span></h2>
+        <ul class="points">
+          <li>心理學 × 設計 → 看到用戶行為的視角遠超純設計師</li>
+          <li>銷售 × 哲學 → 直擊核心需求，而非停在利益表象</li>
+          <li>健身科學 × 商業邏輯 → 連 MBA 課程都無法想像的健康品牌</li>
+          <li>你的興趣組合越獨特，解決問題的系統就越難以複製</li>
+        </ul>
+      </div>
+    </div>
+    <div class="speaker-note">
+      <p class="note-label">講者備注</p>
+      <p>請聽眾在紙上或手機備忘錄，快速寫下自己有的「三個看似不相關的興趣」。這是讓他們把理論與自身連結的關鍵動作。</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 06 -->
+  <div class="slide-card">
+    <div class="slide-top">
+      <div class="slide-num">06</div>
+      <div class="slide-content">
+        <p class="slide-type">COMPARISON · 關鍵選擇</p>
+        <h2 class="slide-title">兩條路：<span class="highlight">技能模式 vs 發展模式</span></h2>
+        <div class="visual-hint">🎨 建議視覺：左右對比表格，右側（發展模式）用黃框強調</div>
+        <ul class="points">
+          <li>技能模式：為利可圖而學技能 → 困在技能盒 → 自由職業者，非事業主人</li>
+          <li>發展模式：追求自我成長 → 教授過程中的知識 → 幫助他人達成目標</li>
+          <li>核心差異：客戶不是陌生人，你自己就是核心客戶</li>
+          <li>聚焦四大永恆市場：健康、財富、關係、幸福</li>
+        </ul>
+      </div>
+    </div>
+    <div class="speaker-note">
+      <p class="note-label">講者備注</p>
+      <p>這張是轉折點。讓聽眾思考：「我現在在哪條路上？」不需要評判，只需要讓他們清楚看見選擇的存在。</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 07 -->
+  <div class="slide-card">
+    <div class="slide-top">
+      <div class="slide-num">07</div>
+      <div class="slide-content">
+        <p class="slide-type">STRATEGY · 品牌策略</p>
+        <h2 class="slide-title">品牌不是 Logo——<span class="highlight">是你邀請別人進入的小世界</span></h2>
+        <ul class="points">
+          <li>Dan Koe 定義：受眾關注你 3-6 個月後，腦中積累的世界觀 + 故事 + 人生哲學的集合</li>
+          <li>多重興趣者的品牌優勢：不同興趣共同服務同一個核心價值觀</li>
+          <li>建構步驟：① 核心故事 → ② 借鑒但保持特色 → ③ 在實踐中自然成形</li>
+          <li>品牌即內容，內容即品牌——一致輸出比完美設計更重要</li>
+        </ul>
+      </div>
+    </div>
+    <div class="speaker-note">
+      <p class="note-label">講者備注</p>
+      <p>用「你最欣賞的那個人的品牌，你記得的是他的 Logo 還是他說過的一句話？」這個問題讓聽眾重新定義品牌。</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 08 -->
+  <div class="slide-card">
+    <div class="slide-top">
+      <div class="slide-num">08</div>
+      <div class="slide-content">
+        <p class="slide-type">TOOL · 實用工具</p>
+        <h2 class="slide-title">創意博物館：<span class="highlight">把你的大腦外接一個硬碟</span></h2>
+        <ul class="points">
+          <li>所有優秀創作者的共同秘密：無情地收集、整理、沉澱想法</li>
+          <li>兩個篩選標準：「表現」（外界共鳴度）× 「興奮」（你的表達慾）</li>
+          <li>三類高創意密度來源：① 古老/少為人知的書籍 ② 經策劃的帳號/部落格 ③ 重磅社交帳號</li>
+          <li>工具不重要，習慣比格式更重要——Notion、Apple Notes 都行</li>
+        </ul>
+      </div>
+    </div>
+    <div class="speaker-note">
+      <p class="note-label">講者備注</p>
+      <p>可當場演示：打開手機備忘錄，把今天聽到最讓你興奮的一個想法記下來。讓聽眾現在就開始建立習慣。</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 09 -->
+  <div class="slide-card">
+    <div class="slide-top">
+      <div class="slide-num">09</div>
+      <div class="slide-content">
+        <p class="slide-type">MONETIZATION · 變現引擎</p>
+        <h2 class="slide-title">注意力是<span class="highlight">最後的護城河</span>——從興趣到收入的完整路徑</h2>
+        <div class="visual-hint">🎨 建議視覺：漏斗圖 → 興趣 → 內容 → 受眾 → 產品</div>
+        <ul class="points">
+          <li>當 AI 能生成所有內容，最後勝出的是「被最多人知道的產品」而非最好的</li>
+          <li>變現公式：興趣 → 創意內容（吸引注意力）→ 受眾（信任建立）→ 產品（系統化解決方案）</li>
+          <li>關鍵：你賣的不是解決方案，是你用自身經驗驗證過的「系統」</li>
+          <li>Dan Koe 案例：「兩小時作家系統」——每天 2 小時完成所有內容創作</li>
+        </ul>
+      </div>
+    </div>
+    <div class="speaker-note">
+      <p class="note-label">講者備注</p>
+      <p>強調「系統」這個詞。人們不是在買你的知識，是在買「如果我跟著這個系統走，我可以到達哪裡」的承諾。</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 10 -->
+  <div class="slide-card">
+    <div class="slide-top">
+      <div class="slide-num">10</div>
+      <div class="slide-content">
+        <p class="slide-type">CASE STUDY · 案例驗證</p>
+        <h2 class="slide-title">璁導視角：<span class="highlight">故事原力如何詮釋這一切</span></h2>
+        <ul class="points">
+          <li>角色：多重興趣者不是分散的人，是一個擁有多層次背景的立體主角</li>
+          <li>情節：你整合興趣、解決問題的過程，本身就是最真實的故事素材</li>
+          <li>意圖：幫助與你有相似路徑的人，更快完成他們的成長旅程</li>
+          <li>五度詮釋法：從不同角度解讀同一現象，就是多重興趣者天生的敘事優勢</li>
+        </ul>
+      </div>
+    </div>
+    <div class="speaker-note">
+      <p class="note-label">講者備注</p>
+      <p>這是最個人化的一張，可以帶入自己的故事：「我是廣告導演、大學講師、Podcast 主持人。每個人都曾說我太分散——但這三個身份組合，才讓我能看見別人看不見的東西。」</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 11: CTA -->
+  <div class="cta-slide">
+    <p class="slide-num-cta">SLIDE 11 · CALL TO ACTION</p>
+    <h2>你的下一步：<span>不是選擇一個興趣——<br>而是找到一個容器，把它們都裝進去</span></h2>
+    <ul class="points" style="text-align:left; max-width:560px; margin: 0 auto 24px;">
+      <li>今天就開始你的「創意博物館」——記錄第一個讓你興奮的想法</li>
+      <li>寫下你的三個興趣，試著找出它們的交叉點</li>
+      <li>問自己：「我解決了什麼自己曾經面對的問題？這能幫到誰？」</li>
+      <li>加入璁導社群，一起實踐多重興趣者的知識變現路徑</li>
+    </ul>
+    <div class="cta-actions">
+      <button class="cta-btn">追蹤璁導 @mengtsungli</button>
+      <button class="cta-btn outline">故事原力課程了解更多</button>
+    </div>
+    <div style="margin-top:20px; font-family:'Space Mono',monospace; font-size:11px; color: rgba(245,197,24,0.6); letter-spacing:2px;">
+      故事說得好 × 客戶追著跑
+    </div>
+  </div>
+
+  <!-- DURATION BAR -->
+  <div class="duration-bar">
+    <h4>// 時間分配建議（25 分鐘版）</h4>
+    <div class="timeline">
+      <span class="t-chip active">S01 開場 2min</span>
+      <span class="t-chip">S02-03 時代背景 4min</span>
+      <span class="t-chip active">S04-05 核心框架 5min</span>
+      <span class="t-chip">S06-07 策略選擇 4min</span>
+      <span class="t-chip active">S08-09 工具變現 5min</span>
+      <span class="t-chip">S10 故事連結 3min</span>
+      <span class="t-chip active">S11 CTA 2min</span>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    璁導 · 投影片大綱 · 發光映像有限公司 · 故事說得好 客戶追著跑
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infographic 加值包｜多重興趣者的護城河</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Serif+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fafaf5;
+    --white: #ffffff;
+    --black: #111111;
+    --yellow: #f5c518;
+    --yellow2: #e8b400;
+    --navy: #0f1f3d;
+    --coral: #e63946;
+    --teal: #2a9d8f;
+    --gray: #888;
+    --light: #f0efe8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #e8e6dc;
+    min-height: 100vh;
+    font-family: 'Noto Serif TC', serif;
+    padding: 40px 20px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .page-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #888;
+    text-align: center;
+    margin-bottom: 32px;
+    text-transform: uppercase;
+  }
+
+  /* GRID */
+  .ig-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  /* CARD BASE */
+  .ig-card {
+    aspect-ratio: 1 / 1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32px 28px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  }
+
+  /* signature */
+  .sig {
+    position: absolute;
+    bottom: 16px; right: 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    opacity: 0.5;
+  }
+
+  /* card num */
+  .card-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-bottom: auto;
+  }
+
+  /* ====== CARD 1: HOOK — dark bg ====== */
+  .card-1 {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .card-1 .card-num { color: var(--yellow); }
+  .card-1 .sig { color: var(--yellow); }
+
+  .card-1 .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--yellow);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .card-1 .big-stat {
+    font-size: clamp(48px, 12vw, 80px);
+    font-weight: 900;
+    color: var(--yellow);
+    line-height: 1;
+    margin-bottom: 8px;
+    font-family: 'Space Mono', monospace;
+  }
+  .card-1 h2 {
+    font-size: clamp(18px, 3vw, 24px);
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+  .card-1 h2 span { color: var(--yellow); }
+  .card-1 p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+  }
+  .card-1 .deco-circle {
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border: 40px solid var(--yellow);
+    border-radius: 50%;
+    opacity: 0.08;
+  }
+
+  /* ====== CARD 2: white bg ====== */
+  .card-2 {
+    background: var(--white);
+    color: var(--black);
+    border: 2px solid var(--black);
+  }
+  .card-2 .card-num { color: #bbb; }
+  .card-2 .sig { color: #aaa; }
+  .card-2 .card-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--black);
+    background: var(--yellow);
+    display: inline-block;
+    padding: 3px 10px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .card-2 h3 {
+    font-size: clamp(16px, 3vw, 22px);
+    font-weight: 900;
+    color: var(--black);
+    line-height: 1.35;
+    margin-bottom: 20px;
+  }
+  .card-2 h3 em {
+    font-style: normal;
+    background: var(--yellow);
+    padding: 0 4px;
+  }
+  .combo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .combo-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--black);
+    line-height: 1.5;
+  }
+  .combo-item .eq {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--gray);
+    flex-shrink: 0;
+  }
+  .combo-item .result {
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  /* ====== CARD 3: yellow bg ====== */
+  .card-3 {
+    background: var(--yellow);
+    color: var(--black);
+  }
+  .card-3 .card-num { color: rgba(0,0,0,0.3); }
+  .card-3 .sig { color: rgba(0,0,0,0.4); }
+  .card-3 .card-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    background: var(--black);
+    color: var(--yellow);
+    display: inline-block;
+    padding: 3px 10px;
+    margin-bottom: 16px;
+  }
+  .card-3 .main-q {
+    font-size: clamp(20px, 4vw, 32px);
+    font-weight: 900;
+    line-height: 1.3;
+    color: var(--black);
+    margin-bottom: 20px;
+  }
+  .path-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .path-box {
+    padding: 12px;
+    border: 1.5px solid;
+  }
+  .path-box.bad-box {
+    border-color: rgba(0,0,0,0.25);
+    background: rgba(0,0,0,0.06);
+  }
+  .path-box.good-box {
+    border-color: var(--black);
+    background: rgba(0,0,0,0.08);
+  }
+  .path-box .path-ttl {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+    color: rgba(0,0,0,0.5);
+  }
+  .path-box.good-box .path-ttl { color: var(--black); }
+  .path-box .path-desc {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--black);
+    font-weight: 700;
+  }
+  .path-box.bad-box .path-desc {
+    opacity: 0.6;
+    text-decoration: line-through;
+    font-weight: 400;
+  }
+
+  /* ====== CARD 4: cream bg ====== */
+  .card-4 {
+    background: var(--cream);
+    color: var(--black);
+    border: 2px solid var(--navy);
+  }
+  .card-4 .card-num { color: #ccc; }
+  .card-4 .sig { color: #bbb; }
+  .card-4 .card-label-4 {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--navy);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--navy);
+    padding-bottom: 8px;
+  }
+  .card-4 .big-quote {
+    font-size: clamp(16px, 3vw, 22px);
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--navy);
+    margin-bottom: 20px;
+  }
+  .card-4 .big-quote span {
+    background: var(--yellow);
+    padding: 0 4px;
+  }
+  .three-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .step-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .step-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    background: var(--navy);
+    color: var(--white);
+    padding: 2px 7px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-txt {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  /* ====== CARD 5: action ====== */
+  .card-5 {
+    background: var(--black);
+    color: var(--white);
+    aspect-ratio: 1 / 0.6;
+    grid-column: 1 / -1;
+  }
+  .card-5 .card-num { color: #444; }
+  .card-5 .sig { color: var(--yellow); }
+  .card-5-inner {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    height: 100%;
+    flex-wrap: wrap;
+  }
+  .card-5-left {
+    flex: 1;
+    min-width: 200px;
+  }
+  .card-5 .action-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--yellow);
+    margin-bottom: 12px;
+  }
+  .card-5 .action-title {
+    font-size: clamp(20px, 3.5vw, 32px);
+    font-weight: 900;
+    line-height: 1.3;
+    color: var(--white);
+    margin-bottom: 0;
+  }
+  .card-5 .action-title span { color: var(--yellow); }
+  .card-5-right {
+    flex: 1;
+    min-width: 200px;
+  }
+  .action-steps {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .action-steps li {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.5;
+  }
+  .action-steps li .step-icon {
+    color: var(--yellow);
+    flex-shrink: 0;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+  }
+
+  /* NOTE */
+  .note-bar {
+    max-width: 960px;
+    width: 100%;
+    margin-top: 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: #999;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<p class="page-title">// Infographic 加值包 · 璁導 · 多重興趣者的護城河</p>
+
+<div class="ig-grid">
+
+  <!-- CARD 1: HOOK -->
+  <div class="ig-card card-1">
+    <div class="deco-circle"></div>
+    <div>
+      <p class="eyebrow">// 反常識洞見</p>
+      <div class="big-stat">×13</div>
+      <h2>多重興趣者建立的個人品牌<br>可讓收費溢價達基準的 <span>13 倍</span></h2>
+      <p>Hinge Marketing 研究 1,028 位買家：<br>頂級個人品牌的定義，從來不是「單一專注」</p>
+    </div>
+    <span class="sig">璁導</span>
+  </div>
+
+  <!-- CARD 2: CROSS-DOMAIN -->
+  <div class="ig-card card-2">
+    <div>
+      <span class="card-label">跨域 = 競爭力</span>
+      <h3>1+1 不等於 2<br>等於 <em>AI 永遠無法複製的視角</em></h3>
+    </div>
+    <div class="combo-list">
+      <div class="combo-item">
+        <span>心理學 × 設計</span>
+        <span class="eq">→</span>
+        <span class="result">深度共情的產品</span>
+      </div>
+      <div class="combo-item">
+        <span>銷售 × 哲學</span>
+        <span class="eq">→</span>
+        <span class="result">直擊核心的談判</span>
+      </div>
+      <div class="combo-item">
+        <span>健身 × 商業</span>
+        <span class="eq">→</span>
+        <span class="result">MBA 看不見的品牌</span>
+      </div>
+    </div>
+    <span class="sig">璁導</span>
+  </div>
+
+  <!-- CARD 3: TWO PATHS -->
+  <div class="ig-card card-3">
+    <div>
+      <span class="card-tag">選擇你的路徑</span>
+      <p class="main-q">你在為技能打工<br>還是讓成長變成事業？</p>
+    </div>
+    <div class="path-row">
+      <div class="path-box bad-box">
+        <p class="path-ttl">❌ 技能模式</p>
+        <p class="path-desc">為利可圖學技能，困在一個盒子裡</p>
+      </div>
+      <div class="path-box good-box">
+        <p class="path-ttl">✓ 發展模式</p>
+        <p class="path-desc">你自己就是核心客戶，成長即產品</p>
+      </div>
+    </div>
+    <span class="sig">璁導</span>
+  </div>
+
+  <!-- CARD 4: BRAND -->
+  <div class="ig-card card-4">
+    <p class="card-label-4">品牌的真相</p>
+    <div class="big-quote">
+      品牌不是 Logo<br>
+      是別人跟著你<span>三到六個月後</span><br>
+      在腦中形成的那個世界
+    </div>
+    <div class="three-steps">
+      <div class="step-row">
+        <span class="step-num">01</span>
+        <span class="step-txt">梳理核心故事——你的低谷與轉折</span>
+      </div>
+      <div class="step-row">
+        <span class="step-num">02</span>
+        <span class="step-txt">借鑒但保持特色，不要複製</span>
+      </div>
+      <div class="step-row">
+        <span class="step-num">03</span>
+        <span class="step-txt">在創作中讓品牌自然成形</span>
+      </div>
+    </div>
+    <span class="sig">璁導</span>
+  </div>
+
+  <!-- CARD 5: ACTION (wide) -->
+  <div class="ig-card card-5">
+    <div class="card-5-inner">
+      <div class="card-5-left">
+        <p class="action-tag">// 現在就做</p>
+        <h2 class="action-title">
+          你的多重興趣<br>
+          正在等一個<span>容器</span>
+        </h2>
+      </div>
+      <div class="card-5-right">
+        <ul class="action-steps">
+          <li><span class="step-icon">①</span>列出你所有的興趣，一個都不要刪</li>
+          <li><span class="step-icon">②</span>找出三個的交叉點——那就是你的利基</li>
+          <li><span class="step-icon">③</span>今天開始你的「創意博物館」，記錄第一個想法</li>
+          <li><span class="step-icon">④</span>問自己：我解決了什麼自己曾經面對的問題？</li>
+        </ul>
+      </div>
+    </div>
+    <span class="sig">璁導</span>
+  </div>
+
+</div>
+
+<div class="note-bar">5 張連環圖解 · 適合 IG / FB / LinkedIn 截圖分享 · 璁導 · 故事說得好 客戶追著跑</div>
+
+</body>
+</html>
