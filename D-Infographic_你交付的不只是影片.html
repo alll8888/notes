@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D｜Infographic — 你交付的不只是影片</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: #111111;
+  color: #FFFFFF;
+  font-size: 16px;
+}
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 60px 32px 80px;
+}
+.tag {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: #F5C518;
+  font-weight: 700;
+  margin-bottom: 6px;
+  text-align: center;
+}
+.page-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+.card {
+  width: 420px;
+  min-height: 440px;
+  background: #FAFAF8;
+  border-radius: 12px;
+  padding: 32px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: #111111;
+}
+.card-hook {
+  background: #1A2B5A;
+  color: #FFFFFF;
+}
+.card-end {
+  background: #FAFAF8;
+  border: 3px solid #F5C518;
+}
+.card-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #F5C518;
+  margin-bottom: 18px;
+}
+.card-hook .card-num { opacity: 0; }
+.card-heading {
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1.25;
+  color: #111111;
+  flex: 0 0 auto;
+}
+.card-hook .card-heading {
+  color: #FFFFFF;
+  font-size: 28px;
+}
+.card-bar {
+  width: 40px;
+  height: 4px;
+  background: #F5C518;
+  margin: 16px 0;
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+.card-hook .card-bar { background: rgba(245,197,24,0.5); }
+.card-body {
+  font-size: 15px;
+  line-height: 1.85;
+  color: #444444;
+  flex: 1;
+}
+.card-hook .card-body { color: rgba(255,255,255,0.72); }
+.card-end .card-body {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111111;
+  line-height: 1.65;
+}
+.card-sig {
+  font-size: 12px;
+  color: #AAAAAA;
+  text-align: right;
+  margin-top: 18px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.card-hook .card-sig { color: rgba(255,255,255,0.3); }
+.card-end .card-sig { color: #F5C518; }
+.deco {
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  font-size: 80px;
+  line-height: 1;
+  color: #F5C518;
+  opacity: 0.1;
+  font-family: Georgia, serif;
+  pointer-events: none;
+  user-select: none;
+}
+.hint {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.08em;
+}
+footer {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 900px) {
+  .card { width: 100%; min-height: auto; }
+}
+@media (max-width: 600px) {
+  .page { padding: 40px 16px 60px; }
+  .card-heading { font-size: 22px; }
+  footer { flex-direction: column; gap: 4px; }
+}
+@media print {
+  body { background: #FFFFFF; }
+  .hint, footer { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="tag">D｜璁導知識圖解</div>
+  <div class="page-title">你交付的不只是影片</div>
+
+  <div class="grid">
+
+    <div class="card card-hook" id="slide-1">
+      <div class="card-num">01</div>
+      <div class="card-heading">你交給客戶的只有影片，你就完了</div>
+      <div class="card-bar"></div>
+      <div class="card-body">因為你的價值，只剩下素材。<br>而素材，是可以比價的。</div>
+      <div class="card-sig">璁導</div>
+    </div>
+
+    <div class="card" id="slide-2">
+      <div class="card-num">02</div>
+      <div class="card-heading">那個客氣<br>讓你掉了價</div>
+      <div class="card-bar"></div>
+      <div class="card-body">怕多管閒事，只做被要求的部分。<br>守本分，剛好讓自己<br>變成了有腳的器材。</div>
+      <div class="card-sig">璁導</div>
+    </div>
+
+    <div class="card" id="slide-3">
+      <div class="card-num">03</div>
+      <div class="card-heading">感動人<br>≠ 說服人</div>
+      <div class="card-bar"></div>
+      <div class="card-body">電影讓你哭，<br>但你不會買票再看一次。<br><br>創作者的目標是觸發行動，<br>不是製造情緒。</div>
+      <div class="card-sig">璁導</div>
+    </div>
+
+    <div class="card card-end" id="slide-4">
+      <div class="deco">"</div>
+      <div class="card-num">04</div>
+      <div class="card-heading" style="font-size:13px;font-weight:400;color:#888888;margin-bottom:8px;">你最值錢的部分</div>
+      <div class="card-bar"></div>
+      <div class="card-body">交付物不是檔案。<br>是讓客戶感覺到<br>「你在替我想」。</div>
+      <div class="card-sig">© 璁導</div>
+    </div>
+
+  </div>
+
+  <div class="hint">最後一格適合單獨截圖分享</div>
+
+  <footer>
+    <span>璁導知識筆記系統 — D Infographic</span>
+    <span>故事說得好，客戶追著跑</span>
+  </footer>
+</div>
+</body>
+</html>

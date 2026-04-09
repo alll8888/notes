@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B｜投影片大綱 — 你交付的不只是影片</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: #111111;
+  color: #FFFFFF;
+  line-height: 1.8;
+  font-size: 16px;
+}
+.page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 32px 80px;
+}
+.tag {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: #F5C518;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 8px;
+}
+.subtitle {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 48px;
+}
+.arc {
+  display: flex;
+  gap: 0;
+  margin-bottom: 48px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.arc-step {
+  flex: 1;
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.arc-step:nth-child(1) { background: #F5C518; color: #111111; }
+.arc-step:nth-child(2) { background: #c49a10; color: #111111; }
+.arc-step:nth-child(3) { background: #8a6b0b; color: #FFFFFF; }
+.arc-step:nth-child(4) { background: #4a3a06; color: #FFFFFF; }
+.arc-step:nth-child(5) { background: #2a2103; color: rgba(255,255,255,0.8); }
+.slide {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 28px 28px 24px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.slide:hover { border-color: rgba(245,197,24,0.3); }
+.slide-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.slide-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.3);
+  min-width: 28px;
+}
+.slide-type {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 3px 10px;
+  border-radius: 4px;
+  background: rgba(245,197,24,0.12);
+  color: #F5C518;
+  border: 1px solid rgba(245,197,24,0.25);
+}
+.slide-type.hook { background: rgba(245,197,24,0.25); }
+.slide-type.cta { background: #F5C518; color: #111111; border-color: #F5C518; }
+.slide-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 16px;
+  line-height: 1.35;
+}
+.slide-points {
+  list-style: none;
+  margin-bottom: 20px;
+}
+.slide-points li {
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+  padding: 5px 0 5px 16px;
+  position: relative;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.slide-points li:last-child { border-bottom: none; }
+.slide-points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #F5C518;
+}
+.notes-label {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.3);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.notes {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.03);
+  border-radius: 6px;
+  padding: 12px 14px;
+  line-height: 1.7;
+  font-style: italic;
+}
+footer {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 600px) {
+  .page { padding: 40px 16px 60px; }
+  h1 { font-size: 20px; }
+  .arc { display: none; }
+  .slide { padding: 20px 16px; }
+  footer { flex-direction: column; gap: 4px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="tag">B｜璁導投影片大綱</div>
+  <h1>你交付的不只是影片</h1>
+  <div class="subtitle">10張｜20–30分鐘演講｜目標聽眾：專家型人設與知識工作者</div>
+
+  <div class="arc">
+    <div class="arc-step">鉤子</div>
+    <div class="arc-step">衝突</div>
+    <div class="arc-step">展開</div>
+    <div class="arc-step">轉折</div>
+    <div class="arc-step">行動</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-header">
+      <span class="slide-num">01</span>
+      <span class="slide-type hook">鉤子</span>
+    </div>
+    <div class="slide-title">你以為你在賣影片</div>
+    <ul class="slide-points">
+      <li>客戶花錢，但買的不是你以為的那個東西</li>
+      <li>你交付影片，你的價值就只剩素材</li>
+      <li>素材是可以比價的</li>
+    </ul>
+    <div class="notes-label">講者備注</div>
+    <div class="notes">直接說這句話，不要開場自介。停三秒。讓它沉進去再繼續。這張停90秒夠了。</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-header">
+      <span class="slide-num">02</span>
+      <span class="slide-type">問題</span>
+    </div>
+    <div class="slide-title">比價坑：你是怎麼掉進去的</div>
+    <ul class="slide-points">
+      <li>4K、燈光、剪接——規格都能列清單</li>
+      <li>規格可以比價，判斷力不能</li>
+      <li>把自己定義成「拍影片的人」，就輸了</li>
+    </ul>
+    <div class="notes-label">講者備注</div>
+    <div class="notes">這裡可以停頓問：「有沒有人被客戶殺過價？」不用等回答。讓問題在空氣裡停一秒，然後繼續走。</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-header">
+      <span class="slide-num">03</span>
+      <span class="slide-type">問題</span>
+    </div>
+    <div class="slide-title">那個客氣，讓你掉了價</div>
+    <ul class="slide-points">
+      <li>怕多管閒事，只做被要求的部分</li>
+      <li>守本分，剛好讓自己變成有腳的器材</li>
+      <li>器材是租的，顧問是請的</li>
+    </ul>
+    <div class="notes-label">講者備注</div>
+    <div class="notes">「有腳的器材」說慢一點。這句話要讓聽眾笑一下，然後馬上意識到這在說自己。</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-header">
+      <span class="slide-num">04</span>
+      <span class="slide-type">反常識</span>
+    </div>
+    <div class="slide-title">感動人 ≠ 說服人</div>
+    <ul class="slide-points">
+      <li>片子很美、拿獎了、產品沒賣出去</li>
+      <li>感動是情緒，採購是決策</li>
+      <li>創作者的目標是觸發行動，不是製造情緒</li>
+    </ul>
+    <div class="notes-label">講者備注</div>
+    <div class="notes">這裡說自己的真實案例。聽眾需要一個失敗的真實故事才會信你。說完停頓，讓它成立。</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-header">
+      <span class="slide-num">05</span>
+      <span class="slide-type">跨域類比</span>
+    </div>
+    <div class="slide-title">建築師不只交房子</div>
+    <ul class="slide-points">
+      <li>建築師交的是「十年後不後悔」的判斷力</li>
+      <li>律師交的是「三年後不踩雷」的預見力</li>
+      <li>你交的應該是什麼？</li>
+    </ul>
+    <div class="notes-label">講者備注</div>
+    <div class="notes">點名台下聽眾的職業。如果是律師就說律師，是顧問就說顧問。讓他們感覺「他在說我」。停頓，讓問題停在空氣裡。</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-header">
+      <span class="slide-num">06</span>
+      <span class="slide-type">內容</span>
+    </div>
+    <div class="slide-title">主動給出沒被要求的東西</div>
+    <ul class="slide-points">
+      <li>一份拍攝前的策略備忘</li>
+      <li>一個你發現但客戶沒注意的問題</li>
+      <li>一個客戶沒想到的版本建議</li>
+    </ul>
+    <div class="notes-label">講者備注</div>
+    <div class="notes">給具體的三個例子，不是抽象原則。聽眾要能直接想像「我明天就可以這樣做」。語速放慢，讓他們記。</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-header">
+      <span class="slide-num">07</span>
+      <span class="slide-type">內容</span>
+    </div>
+    <div class="slide-title">這不是做更多工作</div>
+    <ul class="slide-points">
+      <li>不是要你加班，是讓已有的判斷被看見</li>
+      <li>你腦子裡的思考，如果沒說出來等於沒有</li>
+      <li>透明度是最便宜的信任建立工具</li>
+    </ul>
+    <div class="notes-label">講者備注</div>
+    <div class="notes">很多人聽到「多給」就皺眉頭。這張要解除那個防衛。強調「不是做更多」，是「讓已經做的東西被看見」。</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-header">
+      <span class="slide-num">08</span>
+      <span class="slide-type">洞察</span>
+    </div>
+    <div class="slide-title">說出來，才叫做交付</div>
+    <ul class="slide-points">
+      <li>判斷力停在你腦子裡，等於不存在</li>
+      <li>讓客戶看見你怎麼想，他才能信任你怎麼做</li>
+      <li>這就是溢價的來源</li>
+    </ul>
+    <div class="notes-label">講者備注</div>
+    <div class="notes">這是這場演講最重要的一句話。說完真的停下來。讓它成為金句。</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-header">
+      <span class="slide-num">09</span>
+      <span class="slide-type">洞察</span>
+    </div>
+    <div class="slide-title">你怎麼定義工作，決定你值多少</div>
+    <ul class="slide-points">
+      <li>執行者和解題者，市場給的價格不一樣</li>
+      <li>工作邊界是你自己畫的</li>
+      <li>你現在畫在哪裡？</li>
+    </ul>
+    <div class="notes-label">講者備注</div>
+    <div class="notes">直接問聽眾。不用等回答。讓問題停留。這是轉入行動呼籲前最後一個問題。</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-header">
+      <span class="slide-num">10</span>
+      <span class="slide-type cta">行動呼籲</span>
+    </div>
+    <div class="slide-title">今天回去，做一件事</div>
+    <ul class="slide-points">
+      <li>找你最近一個交付案</li>
+      <li>想一樣你有判斷、但沒說出口的東西</li>
+      <li>寫下來，下次交付的時候附上去</li>
+    </ul>
+    <div class="notes-label">講者備注</div>
+    <div class="notes">具體到這個程度才有用。不是「改變思維」，是「寫下來、附上去」。結束前再說一次：故事說得好，客戶追著跑。然後下台。</div>
+  </div>
+
+  <footer>
+    <span>璁導知識筆記系統 — B 投影片大綱</span>
+    <span>故事說得好，客戶追著跑</span>
+  </footer>
+</div>
+</body>
+</html>

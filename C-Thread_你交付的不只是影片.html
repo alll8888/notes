@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C｜Thread — 你交付的不只是影片</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: #111111;
+  color: #FFFFFF;
+  font-size: 16px;
+  line-height: 1.8;
+}
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 60px 32px 80px;
+}
+.tag {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: #F5C518;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 8px;
+}
+.subtitle {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 48px;
+}
+.thread-item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 4px;
+  position: relative;
+}
+.thread-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 17px;
+  top: 44px;
+  bottom: -4px;
+  width: 2px;
+  background: rgba(255,255,255,0.06);
+}
+.thread-avatar {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #F5C518;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #111111;
+  margin-top: 2px;
+}
+.thread-body {
+  flex: 1;
+  padding-bottom: 28px;
+}
+.thread-meta {
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 8px;
+}
+.thread-meta span {
+  color: rgba(255,255,255,0.6);
+  font-weight: 500;
+}
+.thread-text {
+  font-size: 15px;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.9;
+  white-space: pre-line;
+}
+.thread-item:first-child .thread-text {
+  font-size: 16px;
+  color: #FFFFFF;
+}
+.thread-item:last-child .thread-text {
+  color: rgba(255,255,255,0.65);
+  font-style: italic;
+}
+.thread-num {
+  font-size: 11px;
+  color: #F5C518;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+footer {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 600px) {
+  .page { padding: 40px 20px 60px; }
+  footer { flex-direction: column; gap: 4px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="tag">C｜璁導 Thread</div>
+  <h1>你交的不只是影片</h1>
+  <div class="subtitle">9則 · 適合 Threads / IG / LinkedIn</div>
+
+  <div class="thread-item">
+    <div class="thread-avatar">璁</div>
+    <div class="thread-body">
+      <div class="thread-num">1/9</div>
+      <div class="thread-text">有人跟我說過一句很毒的話：
+「你交給客戶的只有影片，你就完了。」
+因為你的價值，只剩下素材。</div>
+    </div>
+  </div>
+
+  <div class="thread-item">
+    <div class="thread-avatar">璁</div>
+    <div class="thread-body">
+      <div class="thread-num">2/9</div>
+      <div class="thread-text">素材是可以比價的。
+4K、色彩、燈光——
+這些規格任何人都能列清單。</div>
+    </div>
+  </div>
+
+  <div class="thread-item">
+    <div class="thread-avatar">璁</div>
+    <div class="thread-body">
+      <div class="thread-num">3/9</div>
+      <div class="thread-text">那個讓你掉價的東西，叫做客氣。
+怕多管閒事，只做被要求的。
+剛好讓自己變成有腳的器材。</div>
+    </div>
+  </div>
+
+  <div class="thread-item">
+    <div class="thread-avatar">璁</div>
+    <div class="thread-body">
+      <div class="thread-num">4/9</div>
+      <div class="thread-text">我拍過一支很美的廣告。
+獲獎了。
+產品沒賣出去。</div>
+    </div>
+  </div>
+
+  <div class="thread-item">
+    <div class="thread-avatar">璁</div>
+    <div class="thread-body">
+      <div class="thread-num">5/9</div>
+      <div class="thread-text">感動人和說服人，是兩件事。
+電影讓你哭，但你不會買票再看一次。
+創作者的目標是觸發行動，不是製造情緒。</div>
+    </div>
+  </div>
+
+  <div class="thread-item">
+    <div class="thread-avatar">璁</div>
+    <div class="thread-body">
+      <div class="thread-num">6/9</div>
+      <div class="thread-text">建築師不只交房子。
+他交的是「十年後不後悔」的判斷力。
+你交的是什麼？</div>
+    </div>
+  </div>
+
+  <div class="thread-item">
+    <div class="thread-avatar">璁</div>
+    <div class="thread-body">
+      <div class="thread-num">7/9</div>
+      <div class="thread-text">主動給出一份沒被要求的策略備忘。
+不是做更多工作，
+是讓你腦子裡的判斷被客戶看見。</div>
+    </div>
+  </div>
+
+  <div class="thread-item">
+    <div class="thread-avatar">璁</div>
+    <div class="thread-body">
+      <div class="thread-num">8/9</div>
+      <div class="thread-text">透明度是最便宜的信任建立工具。
+你怎麼想問題，說出來。
+判斷力停在腦子裡，等於不存在。</div>
+    </div>
+  </div>
+
+  <div class="thread-item">
+    <div class="thread-avatar">璁</div>
+    <div class="thread-body">
+      <div class="thread-num">9/9</div>
+      <div class="thread-text">你怎麼定義自己的工作邊界，
+決定你值多少錢。
+你現在畫在哪裡？</div>
+    </div>
+  </div>
+
+  <footer>
+    <span>璁導知識筆記系統 — C Thread</span>
+    <span>故事說得好，客戶追著跑</span>
+  </footer>
+</div>
+</body>
+</html>
